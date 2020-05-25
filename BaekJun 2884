@@ -1,9 +1,6 @@
 package study.april21;
 
 import java.util.Scanner;
-/*
- * Baekjun 2884
- */
  
 public class Alarm {
 
