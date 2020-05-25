@@ -1,0 +1,37 @@
+package study.april21;
+
+import java.util.Scanner;
+/*
+ * Baekjun 2884
+ */
+ 
+public class Alarm {
+
+	public static void main (String []args) {
+		Scanner sc = new Scanner (System.in);
+		System.out.println("시간을 입력하세요");
+		int H = sc.nextInt();
+		System.out.println("분을 입력하세요");
+		int M = sc.nextInt();
+		
+		if (H == 0 && M < 45) {
+			H = 23;
+			M = (M + 60 - 45);
+		} else if (M >= 45) {
+			M = (M - 45);
+		} else {
+			H = (H - 1);
+			M = (M + 60 - 45);
+
+		}
+			System.out.println(H + " " + M);
+			sc.close();
+	}
+
+//	public static void main(String[] args) {
+//		clock(10, 10);
+//		clock(0, 30);
+//		clock(0, 50);
+//	}
+
+}
