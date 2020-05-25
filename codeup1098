@@ -1,0 +1,76 @@
+package codeup;
+
+import java.util.Scanner;
+
+public class SugarGame {
+	int size;
+	int[][] map;
+
+	public SugarGame(int size) {
+		this.size = size;
+
+	}
+
+	public SugarGame() {
+		this.size = 5;
+	}
+
+	public void input() {
+		map = new int[size][size];
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("막대갯수를 입력하시오");
+		int count = sc.nextInt();
+		System.out.println("막대의 길이, 놓을 방향(가로 : 0, 세로 : 1), 놓을 좌표를 입력하세요");
+		int[] leng = new int[count];
+		int[] direct = new int[count];
+		int[] x = new int[count];
+		int[] y = new int[count];
+
+		for (int i = 0; i < count; i++) {
+			leng[i] = sc.nextInt();
+			direct[i] = sc.nextInt();
+			x[i] = sc.nextInt() - 1;
+			y[i] = sc.nextInt() - 1;
+		}
+
+		position(leng, direct, x, y);
+//		System.out.println(Arrays.toString(leng));
+//		System.out.println(Arrays.toString(direct));
+//		System.out.println(Arrays.toString(x));
+//		System.out.println(Arrays.toString(y));
+	}
+
+	private void position(int[] leng, int[] direct, int[] x, int[] y) {
+		for (int i = 0; i < x.length; i++) {
+			if (direct[i]==0) {
+				for (int j = 0; j<leng[i]; j++) {
+					map[x[i]][y[i]+j] = 1;
+				}
+			}else {
+				for (int j = 0; j<leng[i];j++) {
+					map[x[i]+j][y[i]] = 1;
+				}
+			}
+		}
+
+		prn(map);
+	}
+
+	private void prn(int map[][]) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				System.out.print(map[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+  
+  	public static void main(String[] args) {
+		SugarGame sg = new SugarGame();
+		sg.input();
+		
+	}
+
+  
+}
