@@ -1,0 +1,77 @@
+package study.may04;
+
+
+public class BlackJack {
+	/*
+	 * baekjun 2798
+	 * 카드의 합이 21을 넘지 않는 한도 내에서, 카드의 합을 최대한 크게 만드는 게임이다.
+	 * 
+	 * 블랙잭에서 각 카드에는 양의 정수가 쓰여 있다. 그 다음, 딜러는 N장의 카드를 모두 숫자가 보이도록 바닥에 놓는다. 그런 후에 딜러는
+	 * 숫자 M을 크게 외친다.
+	 *
+	 * 이제 플레이어는 제한된 시간 안에 N장의 카드 중에서 3장의 카드를 골라야 한다. 블랙잭 변형 게임이기 때문에, 플레이어가 고른 카드의
+	 * 합은 M을 넘지 않으면서 M과 최대한 가깝게 만들어야 한다.
+	 *
+	 * N장의 카드에 써져 있는 숫자가 주어졌을 때, M을 넘지 않으면서 M에 최대한 가까운 카드 3장의 합을 구해 출력하시오.
+	 * 
+	 * 카드의 개수 N(3 ≤ N ≤ 100)과 M(10 ≤ M ≤ 300,000)이
+	 * 
+	 */
+
+	public void blackJack(int n, int m, int[] cards) {
+		int blackjack = 0;
+		int ans = 0;
+		int tmp = 0;
+		// M과 같지 않은 가장 근접한 합을 구할 때 어떤 카드들을 더해야하는 지를 print하기 위한 변수들
+		int a = 0;
+		int b = 0;
+		int c = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (ans == 1) {
+				break;
+			}
+			for (int j = 1; j < n; j++) {
+				if (ans == 1) {
+					break;
+				}
+				for (int k = 2; k < n; k++) {
+					if (ans == 1) {
+						break;
+					}
+					// 3개비교하는 것correct
+					if (j < k && i < j) {
+						blackjack = cards[i] + cards[j] + cards[k];
+						//3카드의 합이 카드 M과 같을 때
+						if (blackjack == m) {
+							ans++;
+							System.out.printf("%d + %d + %d = %d ", cards[i], cards[j], cards[k], blackjack);
+						} else if (blackjack < m) {
+							// 카드 M에서 3카드의 합을 더한 수를 뺀 값이 카드M에서 어떤 수(tmp)를 뺀 값보다 작으면 3카드의 합을 tmp에 저장
+							if (m - blackjack <= m - tmp) {
+								tmp = blackjack;
+								a = cards [i];
+								b = cards[j];
+								c = cards [k];
+							}
+						}
+					}
+				}
+			}
+		}
+		if (tmp != 0 && ans != 1) {
+			System.out.printf("%d + %d + %d = %d ", a, b,c, tmp);
+		}
+	}
+
+}
+
+	/*
+	 * 5 21 5 6 7 8 9
+	 * 
+	 * 21
+	 * 
+	 * 10 500 93 181 245 214 315 36 185 138 216 295
+	 */
+
+
