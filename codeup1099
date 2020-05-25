@@ -1,0 +1,60 @@
+package codeup;
+
+import java.util.Scanner;
+
+public class AntMap {
+
+	private int[][] makeMap() {
+		int[][] map = new int[10][10];
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				map[i][j] = sc.nextInt();
+			}
+		}
+
+		// System.out.println(Arrays.deepToString(map));
+		return map;
+	}
+
+	private int[][] antRoute(int[][] map) {
+		int x = 1;
+		int y = 1;
+		while (true) {
+			if (map[x][y] == 2) {
+				map[x][y] = 9;
+				break;
+			}
+			if (map[x][y] == 0) {
+				map[x][y] = 9;
+				y++;
+			} else {
+				x++;
+				y--;
+			}
+			if (x >= 10) {
+				break;
+			}
+		}
+
+		return map;
+	}
+
+	public void prnMap() {
+
+		int[][] map = antRoute(makeMap());
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				System.out.print(map[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+  
+  
+	public static void main(String[] args) {
+		AntMap am = new AntMap();
+		am.prnMap();
+
+	}
+}
