@@ -1,0 +1,38 @@
+package codesignal.amendstring;
+
+public class AmendtheSentence {
+
+	String amendTheSentence(String s) {
+		StringBuilder sb = new StringBuilder(s);
+		
+		String newStr = "";
+	
+		for (int i = 0; i < s.length(); i++) {
+			if (Character.isUpperCase(sb.charAt(i))) {
+				sb.replace(i, i+1, " "+ Character.toLowerCase(sb.charAt(i)));
+						
+			}
+		}
+		
+		newStr = sb.toString().trim();
+		return newStr;
+	}
+	
+
+	public String toString() {
+		return super.toString();
+	}
+
+	public static void main(String[] args) {
+		String s1 = "CodesignalIsAwesome";
+		String s2 = "Hello";
+
+		AmendtheSentence as = new AmendtheSentence();
+		System.out.println(as.amendTheSentence(s1));
+		System.out.println(as.amendTheSentence(s2));		
+
+	}
+	
+	
+
+}
