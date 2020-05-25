@@ -1,0 +1,20 @@
+class Solution {
+  public String[] solution(int n, int[] arr1, int[] arr2) {
+		String[] result = new String[n];
+		int[] arr3 = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr3[i] = arr1[i] | arr2[i];
+			String binary = Integer.toBinaryString(arr3[i]);
+			if (binary.length() < n) {
+				binary = String.format("%0" + n + "d", Integer.parseInt(binary));
+			
+			}
+
+			binary = binary.replaceAll("1", "#");
+			binary = binary.replaceAll("0", " ");
+			result[i] = binary;
+
+		}
+		return result;
+  }
+}
